@@ -1,8 +1,8 @@
 package me.bi.jpashop.domain.item;
 
 import lombok.Data;
-import me.bi.jpashop.exception.NotEnoughStockException;
 import me.bi.jpashop.domain.Category;
+import me.bi.jpashop.exception.NotEnoughStockException;
 
 import javax.persistence.*;
 import java.util.ArrayList;

@@ -1,7 +1,6 @@
 package me.bi.jpashop.service;
 
 import lombok.RequiredArgsConstructor;
-import me.bi.jpashop.api.MemberApiController;
 import me.bi.jpashop.domain.Member;
 import me.bi.jpashop.repository.MemberRepository;
 import org.springframework.stereotype.Service;

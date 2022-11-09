@@ -2,7 +2,6 @@ package me.bi.jpashop.controller;
 
 import lombok.RequiredArgsConstructor;
 import me.bi.jpashop.domain.item.Book;
-import me.bi.jpashop.domain.item.Item;
 import me.bi.jpashop.service.ItemService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,8 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import java.util.List;
 
 @Controller
 @RequiredArgsConstructor

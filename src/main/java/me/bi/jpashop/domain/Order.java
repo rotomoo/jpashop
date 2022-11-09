@@ -1,6 +1,5 @@
 package me.bi.jpashop.domain;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
