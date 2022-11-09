@@ -23,9 +23,13 @@ public class OrderRepository {
         return em.find(Order.class, id);
     }
 
+    public List<Order> findAll() {
+        return em.createQuery("select o from Order o", Order.class)
+                .getResultList();
+    }
+
     public List<Order> findAllByString(OrderSearch orderSearch) {
-        //language=JPAQL
-        String jpql = "select o From Order o join o.member m";
+        String jpql = "select o from Order o join o.member m";
         boolean isFirstCondition = true;
         //주문 상태 검색
         if (orderSearch.getOrderStatus() != null) {
@@ -58,9 +62,19 @@ public class OrderRepository {
     }
 
     public List<Order> findAllWithMemberDelivery() {
-        em.createQuery(
+        return em.createQuery(
                 "select o from Order o" +
+                        " join fetch o.member m" +
+                        " join fetch o.delivery d", Order.class
+        ).getResultList();
+    }
 
-        )
+    public List<OrderSimpleQueryDto> findOrderDtos() {
+        return em.createQuery(
+                "select new me.bi.jpashop.repository.OrderSimpleQueryDto(o.id, m.memberName, o.orderDate, o.status, d.address)" +
+                        " from Order o" +
+                        " join o.member m" +
+                        " join o.delivery d", OrderSimpleQueryDto.class
+        ).getResultList();
     }
 }

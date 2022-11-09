@@ -1,5 +1,6 @@
 package me.bi.jpashop.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
@@ -16,11 +17,10 @@ public class Member {
     @Column(name = "member_id")
     private Long id;
 
-    @NotEmpty
     private String memberName;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "member")
+    @JsonIgnore
     private List<Order> orders = new ArrayList<>();
 
     @Embedded

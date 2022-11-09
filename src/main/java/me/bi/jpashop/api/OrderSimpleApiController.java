@@ -7,6 +7,7 @@ import me.bi.jpashop.domain.Order;
 import me.bi.jpashop.domain.OrderStatus;
 import me.bi.jpashop.repository.OrderRepository;
 import me.bi.jpashop.repository.OrderSearch;
+import me.bi.jpashop.repository.OrderSimpleQueryDto;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,6 +28,16 @@ public class OrderSimpleApiController {
 
     private final OrderRepository orderRepository;
 
+/*    @GetMapping("/api/v1/simple-orders")
+    public List<Order> ordersV1() {
+        List<Order> all = orderRepository.findAll();
+        for (Order order : all) {
+            order.getMember().getMemberName(); //Lazy 강제 초기화
+            order.getDelivery().getAddress(); //Lazy 강제 초기화
+        }
+        return all;
+    }*/
+
     @GetMapping("/api/v1/simple-orders")
     public List<Order> ordersV1() {
         List<Order> all = orderRepository.findAllByString(new OrderSearch());
@@ -46,7 +57,6 @@ public class OrderSimpleApiController {
         List<SimpleOrderDto> result = orders.stream()
                 .map(o -> new SimpleOrderDto(o))
                 .collect(Collectors.toList());
-
         return result;
 
 //        return orderRepository.findAllByString(new OrderSearch()).stream()
@@ -57,8 +67,18 @@ public class OrderSimpleApiController {
     @GetMapping("/api/v3/simple-orders")
     public List<SimpleOrderDto> ordersV3() {
         List<Order> orders = orderRepository.findAllWithMemberDelivery();
+
+        List<SimpleOrderDto> result = orders.stream()
+                .map(o -> new SimpleOrderDto(o))
+                .collect(Collectors.toList());
+
+        return result;
     }
 
+    @GetMapping("/api/v4/simple-orders")
+    public List<OrderSimpleQueryDto> ordersV4() {
+        return orderRepository.findOrderDtos();
+    }
 
     @Data
     static class SimpleOrderDto {
