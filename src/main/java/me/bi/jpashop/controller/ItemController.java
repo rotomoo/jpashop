@@ -25,7 +25,7 @@ public class ItemController {
     @PostMapping("items/new")
     public String create(BookForm form) {
         Book book = new Book();
-        book.setItemName(form.getName());
+        book.setName(form.getName());
         book.setStockQuantity(form.getStockQuantity());
         book.setPrice(form.getPrice());
         book.setAuthor(form.getAuthor());
@@ -49,7 +49,7 @@ public class ItemController {
         BookForm form = new BookForm();
 
         form.setId(item.getId());
-        form.setName(item.getItemName());
+        form.setName(item.getName());
         form.setAuthor(item.getAuthor());
         form.setIsbn(item.getIsbn());
         form.setPrice(item.getPrice());
@@ -67,7 +67,7 @@ public class ItemController {
         // 이렇게 하면 merge로 null이 될수있다. 하지말자
 /*      Book book = new Book();
         book.setId(form.getId());
-        book.setItemName(form.getName());
+        book.setName(form.getName());
         book.setPrice(form.getPrice());
         book.setStockQuantity(form.getStockQuantity());
         book.setAuthor(form.getAuthor());

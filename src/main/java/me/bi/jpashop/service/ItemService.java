@@ -24,7 +24,7 @@ public class ItemService {
     public void updateItem(Long itemId, int price, int stockQuantity, String name) {
         Item findItem = itemRepository.findOne(itemId);
         findItem.setPrice(price);
-        findItem.setItemName(name);
+        findItem.setName(name);
         findItem.setStockQuantity(stockQuantity);
     }
 

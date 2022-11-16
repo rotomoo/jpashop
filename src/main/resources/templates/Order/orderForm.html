@@ -11,7 +11,7 @@
         <option value="">회원선택</option>
         <option th:each="member : ${members}"
                 th:value="${member.id}"
-                th:text="${member.memberName}" />
+                th:text="${member.name}" />
       </select>
     </div>
     <div class="form-group">
@@ -20,7 +20,7 @@
         <option value="">상품선택</option>
         <option th:each="item : ${items}"
                 th:value="${item.id}"
-                th:text="${item.itemName}" />
+                th:text="${item.name}" />
       </select>
     </div>
     <div class="form-group">

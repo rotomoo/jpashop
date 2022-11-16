@@ -27,7 +27,7 @@ public class MemberApiController {
     public CreateMemberResponse saveMemberV2(@RequestBody @Valid CreateMemberRequest request) {
 
         Member member = new Member();
-        member.setMemberName(request.getName());
+        member.setName(request.getName());
 
         Long id = memberService.join(member);
         return new CreateMemberResponse(id);
@@ -40,7 +40,7 @@ public class MemberApiController {
 
         memberService.update(id, request.getName());
         Member findMember = memberService.findOne(id);
-        return new UpdateMemberResponse(findMember.getId(), findMember.getMemberName());
+        return new UpdateMemberResponse(findMember.getId(), findMember.getName());
     }
 
     @GetMapping("/api/v1/members")
@@ -52,7 +52,7 @@ public class MemberApiController {
     public Result membersV2() {
         List<Member> findMembers = memberService.findMembers();
         List<MemberDto> collect = findMembers.stream()
-                .map(m -> new MemberDto(m.getMemberName()))
+                .map(m -> new MemberDto(m.getName()))
                 .collect(Collectors.toList());
 
         return new Result(collect.size(), collect);

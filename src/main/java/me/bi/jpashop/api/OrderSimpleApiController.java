@@ -32,7 +32,7 @@ public class OrderSimpleApiController {
     public List<Order> ordersV1() {
         List<Order> all = orderRepository.findAll();
         for (Order order : all) {
-            order.getMember().getMemberName(); //Lazy 강제 초기화
+            order.getMember().getName(); //Lazy 강제 초기화
             order.getDelivery().getAddress(); //Lazy 강제 초기화
         }
         return all;
@@ -42,7 +42,7 @@ public class OrderSimpleApiController {
     public List<Order> ordersV1() {
         List<Order> all = orderRepository.findAllByString(new OrderSearch());
         for (Order order : all) {
-            order.getMember().getMemberName(); //Lazy 강제 초기화
+            order.getMember().getName(); //Lazy 강제 초기화
             order.getDelivery().getAddress(); //Lazy 강제 초기화
         }
         return all;
@@ -90,7 +90,7 @@ public class OrderSimpleApiController {
 
         public SimpleOrderDto(Order order) {
             orderId = order.getId();
-            name = order.getMember().getMemberName(); // LAZY 초기화
+            name = order.getMember().getName(); // LAZY 초기화
             orderDate = order.getOrderDate();
             orderStatus = order.getStatus();
             address = order.getDelivery().getAddress(); // LAZY 초기화

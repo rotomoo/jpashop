@@ -81,7 +81,7 @@ public class initDb {
 
         private Book createBook(String name, int price, int stockQuantity) {
             Book book1 = new Book();
-            book1.setItemName(name);
+            book1.setName(name);
             book1.setPrice(price);
             book1.setStockQuantity(stockQuantity);
             return book1;
@@ -89,7 +89,7 @@ public class initDb {
 
         private Member createMember(String name, String city, String street, String zipcode) {
             Member member = new Member();
-            member.setMemberName(name);
+            member.setName(name);
             member.setAddress(new Address(city, street, zipcode));
             return member;
         }

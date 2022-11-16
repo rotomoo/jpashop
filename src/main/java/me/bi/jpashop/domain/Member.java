@@ -15,7 +15,7 @@ public class Member {
     @Column(name = "member_id")
     private Long id;
 
-    private String memberName;
+    private String name;
 
     @OneToMany(mappedBy = "member")
     @JsonIgnore
